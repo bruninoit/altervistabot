@@ -34,18 +34,17 @@
 		$username = $update["message"]["from"]["username"];
 		$nome     = $update["message"]["from"]["first_name"];
 		$cognome  = $update["message"]["from"]["last_name"];
+		if ($chatID < 0) {
+			$titolo       = $update["message"]["chat"]["title"];
+			$usernamechat = $update["message"]["chat"]["username"];
+		}
+
+		$voice    = $update["message"]["voice"]["file_id"];
+		$photo    = $update["message"]["photo"][0]["file_id"];
+		$document = $update["message"]["document"]["file_id"];
+		$audio    = $update["message"]["audio"]["file_id"];
+		$sticker  = $update["message"]["sticker"]["file_id"];
 	}
-	if ($chatID < 0) {
-					$titolo       = $update["message"]["chat"]["title"];
-					$usernamechat = $update["message"]["chat"]["username"];
-	}
-	
-	$voice    = $update["message"]["voice"]["file_id"];
-	$photo    = $update["message"]["photo"][0]["file_id"];
-	$document = $update["message"]["document"]["file_id"];
-	$audio    = $update["message"]["audio"]["file_id"];
-	$sticker  = $update["message"]["sticker"]["file_id"];
-	
 	
 	//tastiere inline
 	if ($update["callback_query"]) {
