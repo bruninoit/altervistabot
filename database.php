@@ -3,18 +3,20 @@
 	echo "<br>Plugin Database: 2.0";
 	
 	
-	if ($_GET['install'] and $_GET['userbot']) {
-					$url = explode(".", $_SERVER["HTTP_HOST"]);
-					$dir = dirname($_SERVER["PHP_SELF"]);
-					$dir = substr($dir, 1);
-					$dbh = new PDO("mysql:host=localhost;dbname=my_" . $url[0], $url[0], "");
-					$dbh->query("CREATE TABLE IF NOT EXISTS " . $_GET['userbot'] . " (
+	if ($_GET['install']) {
+		$dbTable = "nicknamebot" //put here nicknamebot
+
+		$url = explode(".", $_SERVER["HTTP_HOST"]);
+		$dir = dirname($_SERVER["PHP_SELF"]);
+		$dir = substr($dir, 1);
+		$dbh = new PDO("mysql:host=localhost;dbname=my_" . $url[0], $url[0], "");
+		$dbh->query("CREATE TABLE IF NOT EXISTS " . $dbTable . " (
 id int(0) AUTO_INCREMENT,
 chat_id bigint(0),
 username varchar(200),
 page varchar(200),
 PRIMARY KEY (id))");
-					echo "<br>HO INSTALLATO IL DATABASE";
+		echo "<br>HO INSTALLATO IL DATABASE";
 	}
 	
 	
