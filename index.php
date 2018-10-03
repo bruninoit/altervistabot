@@ -9,10 +9,10 @@ $update = json_decode($content, true);
 
 
 //non toccare
-require 'class-http-request.php';
-require 'functions.php';
-require 'database.php';
-require '_config.php';
+require_once 'class-http-request.php';
+require_once 'functions.php';
+require_once 'database.php';
+require_once '_config.php';
 //per l'utente
 include '_comandi.php';
 include 'utenti.php';

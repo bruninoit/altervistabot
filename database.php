@@ -4,6 +4,7 @@ echo "<br>Plugin Database: 2.0";
 
 
 if ($_GET['install']) {
+    require_once '_config.php';
     $url = explode(".", $_SERVER["HTTP_HOST"]);
     $dir = dirname($_SERVER["PHP_SELF"]);
     $dir = substr($dir, 1);
