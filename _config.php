@@ -3,6 +3,8 @@
 
 //configurazioni
 $config = array(
+    "tableName" => 'avbot',
+
     "formattazione_predefinita" => "HTML",
     //o "Markdown" o "" per nulla
 
@@ -21,6 +23,7 @@ $config = array(
 
 //non toccare
 require 'functions.php';
+
 
 //plugins
 $plugins = array(

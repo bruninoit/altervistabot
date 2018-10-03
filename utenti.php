@@ -4,7 +4,6 @@ echo "<br>Plugin Utenti 1.0";
 
 
 //iscritti
-
 if (strpos($msg, "/iscritti") === 0 and $userID == $adminID) {
 
     $qcp = mysql_query("select * from $tabella where not page = 'disable' and chat_id>0 group by chat_id");
@@ -32,8 +31,6 @@ if (strpos($msg, "/iscritti") === 0 and $userID == $adminID) {
 
 
 //post globali
-
-
 if (strpos($msg, "/post") === 0 and $adminID == $chatID) {
 
     $t = array(
@@ -60,6 +57,7 @@ if (strpos($msg, "/post") === 0 and $adminID == $chatID) {
 _Se selezioni gruppi, invia anche nei canali conosciuti._", $t, 'Markdown', false, false, true);
 }
 
+
 if (strpos($msg, "/2post") === 0 and $adminID == $chatID) {
     $campo = explode(" ", $msg);
     mysql_query("update $tabella set page = 'post $campo[1]' where chat_id = $chatID");
@@ -78,11 +76,13 @@ Formattazione: " . $config['formattazione_messaggi_globali'], $t);
 
 }
 
+
 if (strpos($msg, "/apostannulla") === 0 and $adminID == $chatID) {
     cb_reply($cbid, "Ok!", false, $cbmid, "Invio Post annullato");
     mysql_query("update $tabella set page = '' where chat_id = $chatID");
     exit;
 }
+
 
 if (strpos($u['page'], "post") === 0) {
     if ($msg) {
@@ -108,7 +108,6 @@ if (strpos($u['page'], "post") === 0) {
         fwrite($f2, $msg);
         fclose($f2);
 
-
         //invio
         $s = mysql_query("select * from $tabella $q group by chat_id");
         mysql_query("update $tabella set page = '' where chat_id = $chatID");
@@ -120,7 +119,6 @@ if (strpos($u['page'], "post") === 0) {
                 mysql_query("update $tabella set page = 'disable' where chat_id = $b[chat_id]");
             }
         }
-
 
     } else {
         sm($chatID, "Solo messaggi testuali.");
@@ -156,11 +154,3 @@ if (strpos($msg, "/unban ") === 0 and $adminID == $chatID) {
             $campo[1]) . "\"");
     sm($chatID, "Ho sbannato $campo[1] dal bot");
 }
-	
-	
-	
-	
-	
-	
-	
-	

@@ -64,10 +64,7 @@ require 'database.php';
 function sm($chatID, $text, $rmf = false, $pm = 'pred', $dis = false, $replyto = false, $inline = 'pred')
 {
     global $api;
-    global $userID;
-    global $update;
     global $config;
-
 
     if ($pm == 'pred') {
         $pm = $config["formattazione_predefinita"];
@@ -124,7 +121,6 @@ function sm($chatID, $text, $rmf = false, $pm = 'pred', $dis = false, $replyto =
         $r = new HttpRequest("post", "https://api.telegram.org/$api/sendmessage", $args);
         $rr = $r->getResponse();
         $ar = json_decode($rr, true);
-        $ok = $ar["ok"]; //false
         $e403 = $ar["error_code"];
         if ($e403 == "403") {
             return false;
@@ -140,9 +136,6 @@ function sm($chatID, $text, $rmf = false, $pm = 'pred', $dis = false, $replyto =
 function si($chatID, $img, $rmf = false, $cap = '')
 {
     global $api;
-    global $userID;
-    global $update;
-
 
     $rm = array(
         'inline_keyboard' => $rmf
@@ -166,7 +159,6 @@ function si($chatID, $img, $rmf = false, $cap = '')
 
     $rr = $r->getResponse();
     $ar = json_decode($rr, true);
-    $ok = $ar["ok"]; //false
     $e403 = $ar["error_code"];
     if ($e403 == "403") {
         return false;
@@ -195,7 +187,7 @@ function cb_reply($id, $text, $alert = false, $cbmid = false, $ntext = false, $n
         'show_alert' => $alert
 
     );
-    $r = new HttpRequest("get", "https://api.telegram.org/$api/answerCallbackQuery", $args);
+    new HttpRequest("get", "https://api.telegram.org/$api/answerCallbackQuery", $args);
 
     if ($cbmid) {
         if ($nmenu) {
@@ -216,7 +208,7 @@ function cb_reply($id, $text, $alert = false, $cbmid = false, $ntext = false, $n
         if ($nmenu) {
             $args["reply_markup"] = $rm;
         }
-        $r = new HttpRequest("post", "https://api.telegram.org/$api/editMessageText", $args);
+        new HttpRequest("post", "https://api.telegram.org/$api/editMessageText", $args);
 
 
     }
@@ -231,7 +223,7 @@ function addcron($time, $msg)
         'time' => $time,
         'msg' => $msg
     );
-    $rp = new HttpRequest("post", "https://httpsfreebot.ssl.altervista.org/bot/httpsfree/addcron.php", $args);
+    new HttpRequest("post", "https://httpsfreebot.ssl.altervista.org/bot/httpsfree/addcron.php", $args);
 }
 
 
@@ -242,7 +234,7 @@ function ban($chatID, $userID)
         'chat_id' => $chatID,
         'user_id' => $userID
     );
-    $r = new HttpRequest("get", "https://api.telegram.org/$api/kickChatMember", $args);
+    new HttpRequest("get", "https://api.telegram.org/$api/kickChatMember", $args);
 
 }
 
@@ -253,7 +245,7 @@ function unban($chatID, $userID)
         'chat_id' => $chatID,
         'user_id' => $userID
     );
-    $r = new HttpRequest("get", "https://api.telegram.org/$api/unbanChatMember", $args);
+    new HttpRequest("get", "https://api.telegram.org/$api/unbanChatMember", $args);
 
 }
 	

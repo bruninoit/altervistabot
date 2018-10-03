@@ -40,5 +40,3 @@ $f2 = fopen($file, 'w');
 fwrite($f2, $content);
 fclose($f2);
 
-
-?>
