@@ -2,10 +2,8 @@
 
 echo "<br>Plugin Utenti 1.0";
 
-
 //iscritti
 if (strpos($msg, "/iscritti") === 0 and $userID == $adminID) {
-
     $qcp = mysql_query("select * from $tabella where not page = 'disable' and chat_id>0 group by chat_id");
     $qcg = mysql_query("select * from $tabella where not page = 'disable' and chat_id<0 group by chat_id");
     $cp = mysql_num_rows($qcp);
@@ -18,13 +16,13 @@ if (strpos($msg, "/iscritti") === 0 and $userID == $adminID) {
     $mcg = mysql_num_rows($mqcg);
 
 
-    $iscritti = "馃攬*ISCRITTI AL BOT*";
-    $iscritti .= "\n  馃懁 Chat Private: $cp";
-    $iscritti .= "\n  馃懃 Chat Gruppi: $cg";
+    $iscritti = "🔈*ISCRITTI AL BOT*";
+    $iscritti .= "\n  👤 Chat Private: $cp";
+    $iscritti .= "\n  👥 Chat Gruppi: $cg";
 
-    $iscritti .= "\n\n馃攪*MORTI*";
-    $iscritti .= "\n  馃懁 Chat Private: $mcp";
-    $iscritti .= "\n  馃懃 Chat Gruppi: $mcg";
+    $iscritti .= "\n\n🔇*MORTI*";
+    $iscritti .= "\n  👤 Chat Private: $mcp";
+    $iscritti .= "\n  👥 Chat Gruppi: $mcg";
 
     sm($chatID, $iscritti, false, 'Markdown');
 }
@@ -32,7 +30,6 @@ if (strpos($msg, "/iscritti") === 0 and $userID == $adminID) {
 
 //post globali
 if (strpos($msg, "/post") === 0 and $adminID == $chatID) {
-
     $t = array(
         array(
             array(
@@ -51,7 +48,6 @@ if (strpos($msg, "/post") === 0 and $adminID == $chatID) {
             )
         )
     );
-
     sm($chatID, "Ok $nome, dove vuoi inviare il messaggio globale?
 
 _Se selezioni gruppi, invia anche nei canali conosciuti._", $t, 'Markdown', false, false, true);
@@ -73,7 +69,6 @@ if (strpos($msg, "/2post") === 0 and $adminID == $chatID) {
 
     cb_reply($cbid, "Ok!", false, $cbmid, "Ok $nome, invia ora il post globale che vuoi inviare.
 Formattazione: " . $config['formattazione_messaggi_globali'], $t);
-
 }
 
 
@@ -99,7 +94,6 @@ if (strpos($u['page'], "post") === 0) {
         if ($achi == 3) {
             $q = " where 1";
         }
-
         sm($chatID, "Post in viaggio verso gli utenti.");
 
         //salvo post in file
@@ -119,7 +113,6 @@ if (strpos($u['page'], "post") === 0) {
                 mysql_query("update $tabella set page = 'disable' where chat_id = $b[chat_id]");
             }
         }
-
     } else {
         sm($chatID, "Solo messaggi testuali.");
     }
