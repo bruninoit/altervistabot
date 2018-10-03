@@ -1,7 +1,5 @@
 <?php
 
-require 'class-http-request.php';
-
 if (isset($_GET['api']) and ctype_digit($_GET['api'])) {
     $api = $_GET['api'];
 } else {
@@ -22,19 +20,20 @@ $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 
 
+//non toccare
+require 'class-http-request.php';
+require 'functions.php';
+require 'database.php';
 require '_config.php';
-require '_comandi.php';
-
-
-foreach ($plugins as $plugin => $active) {
-    if ($active) {
-        include($plugin);
-    }
-}
+//per l'utente
+include '_comandi.php';
+include 'utenti.php';
+include 'feedback.php';
+include 'inline.php';
+include 'gruppi.php';
 
 
 //creo un file input.json in cui salvo l'ultima chiamata inviata a me
-
 $file = "input.json";
 $f2 = fopen($file, 'w');
 fwrite($f2, $content);

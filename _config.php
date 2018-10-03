@@ -1,6 +1,5 @@
 <?php
 
-
 //configurazioni
 $config = array(
     "tableName" => 'avbot',
@@ -19,20 +18,3 @@ $config = array(
     "funziona_messaggi_modificati" => true,
     "funziona_messaggi_modificati_canali" => true
 );
-
-
-//non toccare
-require 'functions.php';
-
-
-//plugins
-$plugins = array(
-    "inline.php" => true,
-    "gruppi.php" => true,
-    "feedback.php" => true,
-    "utenti.php" => true,
-);
-	
-	
-	
-	
