@@ -1,20 +1,8 @@
 <?php
 
-if (isset($_GET['api']) and ctype_digit($_GET['api'])) {
-    $api = $_GET['api'];
-} else {
-    exit;
-}
-if (isset($_GET['admin']) and ctype_digit($_GET['admin'])) {
-    $adminID = $_GET['admin'];
-} else {
-    exit;
-}
-if (isset($_GET['userbot']) and ctype_digit($_GET['userbot'])) {
-    $userbot = $_GET['userbot'];
-} else {
-    exit;
-}
+isset($_GET['api']) ? $api = $_GET['api'] : exit;
+isset($_GET['admin']) ? $adminID = $_GET['admin'] : exit;
+isset($_GET['userbot']) ? $userbot = $_GET['userbot'] : exit;
 
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
