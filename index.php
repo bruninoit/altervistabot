@@ -2,14 +2,21 @@
 	
 	require 'class-http-request.php';
 	
-	$api     = $_GET['api'];
-	$idadmin = $_GET['admin'];
-	$adminID = $idadmin;
-	$userbot = $_GET['userbot'];
-	
+	if(isset($_GET['api']) and ctype_digit($_GET['api'])) {
+		$api = $_GET['api'];
+	}
+	else exit;
+	if(isset($_GET['admin']) and ctype_digit($_GET['admin'])) {
+		$adminID = $_GET['admin'];
+	}
+	else exit;
+	if(isset($_GET['userbot']) and ctype_digit($_GET['userbot'])) {
+		$userbot = $_GET['userbot'];
+	}
+	else exit;
 	
 	$content = file_get_contents("php://input");
-	$update  = json_decode($content, true);
+	$update = json_decode($content, true);
 	
 	
 	require '_config.php';
