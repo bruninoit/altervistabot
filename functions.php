@@ -24,7 +24,6 @@ function sm($chatID, $text, $rmf = false, $pm = 'pred', $dis = false, $replyto =
         $inline = false;
     }
 
-
     $dal = $config["nascondi_anteprima_link"];
 
     if (!$inline) {
@@ -85,7 +84,6 @@ function si($chatID, $img, $rmf = false, $cap = '')
     );
     $rm = json_encode($rm);
 
-
     if (strpos($img, ".")) {
         $img = str_replace("index.php", "", $_SERVER['SCRIPT_URI']) . $img;
     }
@@ -98,7 +96,6 @@ function si($chatID, $img, $rmf = false, $cap = '')
         $args['reply_markup'] = $rm;
     }
     $r = new HttpRequest("post", "https://api.telegram.org/$api/sendPhoto", $args);
-
 
     $rr = $r->getResponse();
     $ar = json_decode($rr, true);
@@ -123,7 +120,6 @@ function cb_reply($id, $text, $alert = false, $cbmid = false, $ntext = false, $n
         $npm = $config["formattazione_predefinita"];
     }
 
-
     $args = array(
         'callback_query_id' => $id,
         'text' => $text,
@@ -141,7 +137,6 @@ function cb_reply($id, $text, $alert = false, $cbmid = false, $ntext = false, $n
 
         }
 
-
         $args = array(
             'chat_id' => $chatID,
             'message_id' => $cbmid,
@@ -152,8 +147,6 @@ function cb_reply($id, $text, $alert = false, $cbmid = false, $ntext = false, $n
             $args["reply_markup"] = $rm;
         }
         new HttpRequest("post", "https://api.telegram.org/$api/editMessageText", $args);
-
-
     }
 }
 
@@ -178,7 +171,6 @@ function ban($chatID, $userID)
         'user_id' => $userID
     );
     new HttpRequest("get", "https://api.telegram.org/$api/kickChatMember", $args);
-
 }
 
 function unban($chatID, $userID)
@@ -189,7 +181,6 @@ function unban($chatID, $userID)
         'user_id' => $userID
     );
     new HttpRequest("get", "https://api.telegram.org/$api/unbanChatMember", $args);
-
 }
 	
 	
