@@ -82,7 +82,12 @@
 													$inline = true;
 									elseif ($config["tastiera_predefinita"] == "normale")
 													$inline = false;
-					}
+					}  elseif ($inline == 'inline') 
+									$inline = true;
+					else 
+									$inline = false;
+	
+		
 					if ($rmf == "nascondi")
 									$inline = false;
 					
