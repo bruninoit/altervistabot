@@ -21,10 +21,10 @@ PRIMARY KEY (id))");
 $ex = explode(".", $_SERVER['SERVER_NAME']);
 $nomesito = $ex[0];
 mysql_select_db("my_" . $nomesito);
-$tabella = $userbot;
+$tabella = $config['tableName'];
 
 
-if ($chatID) {
+if (isset($chatID)) {
     $q = mysql_query("select * from $tabella where chat_id = $chatID");
     if (!mysql_num_rows($q)) {
         mysql_query("insert into $tabella (chat_id, page, username) values ($chatID, '', \"" . $username . "\")");
