@@ -4,7 +4,7 @@
 	
 	
 	if ($_GET['install']) {
-		$dbTable = "nicknamebot" //put here nicknamebot
+		$dbTable = "nicknamebot"; //put here nicknamebot
 
 		$url = explode(".", $_SERVER["HTTP_HOST"]);
 		$dir = dirname($_SERVER["PHP_SELF"]);
