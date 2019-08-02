@@ -2,12 +2,10 @@
 
 echo "<br>Plugin Database: 2.0";
 
-
 if ($_GET['install']) {
     require_once '_config.php';
     $url = explode(".", $_SERVER["HTTP_HOST"]);
-    $dir = dirname($_SERVER["PHP_SELF"]);
-    $dir = substr($dir, 1);
+    $dir = substr(dirname($_SERVER["PHP_SELF"]), 1);
     $dbh = new PDO("mysql:host=localhost;dbname=my_" . $url[0], $url[0], "");
     $dbh->query("CREATE TABLE IF NOT EXISTS " . $config['tableName'] . " (
 id int(0) AUTO_INCREMENT,

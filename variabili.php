@@ -26,11 +26,19 @@ if (isset($update["message"])) {
     $username = isset($update["message"]["from"]["username"]) ? $update["message"]["from"]["username"] : false;
     $nome = isset($update["message"]["from"]["first_name"]) ? $update["message"]["from"]["first_name"] : false;
     $cognome = isset($update["message"]["from"]["last_name"]) ? $update["message"]["from"]["last_name"] : false;
+
+    if (isset($update["message"]["photo"]) and is_array($update["message"]["photo"])) {
+        $photo = isset(end($update["message"]["photo"])["file_id"]) ? end($update["message"]["photo"])["file_id"] : false;
+    } else {
+        $photo = false;
+    }
     $voice = isset($update["message"]["voice"]["file_id"]) ? $update["message"]["voice"]["file_id"] : false;
-    $photo = isset($update["message"]["photo"][0]["file_id"]) ? $update["message"]["photo"][0]["file_id"] : false;
     $document = isset($update["message"]["document"]["file_id"]) ? $update["message"]["document"]["file_id"] : false;
     $audio = isset($update["message"]["audio"]["file_id"]) ? $update["message"]["audio"]["file_id"] : false;
     $sticker = isset($update["message"]["sticker"]["file_id"]) ? $update["message"]["sticker"]["file_id"] : false;
+
+    $replyText = isset($update["message"]["reply_to_message"]["text"]) ? $update["message"]["reply_to_message"]["text"] : false;
+
     if ($chatID < 0) {
         $titolo = isset($update["message"]["chat"]["title"]) ? $update["message"]["chat"]["title"] : false;
         $usernamechat = isset($update["message"]["chat"]["username"]) ? $update["message"]["chat"]["username"] : false;

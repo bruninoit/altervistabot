@@ -14,16 +14,16 @@ Foto: /foto");
 
 //tastiera normale
 if ($msg == "/tastiera") {
-    $menu[] = array(
+    $menu[] = [
         "voce 1"
-    );
-    $menu[] = array(
+    ];
+    $menu[] = [
         "voce 2",
         "voce 3"
-    );
-    $menu[] = array(
+    ];
+    $menu[] = [
         "voce 5"
-    );
+    ];
 
     $text = "Tastiera normale.
 Nascondi tastiera: /nascondi";
@@ -39,22 +39,22 @@ if ($msg == "/nascondi") {
 
 //tastiera inline
 if ($msg == "/itastiera") {
-    $menu[] = array(
-        array(
-            "text" => "bottone1",
+    $menu[] = [
+        [
+            "text"          => "bottone1",
             "callback_data" => "/test1"
-        ),
-        array(
-            "text" => "bottone2",
+        ],
+        [
+            "text"          => "bottone2",
             "callback_data" => "/test2"
-        )
-    );
-    $menu[] = array(
-        array(
-            "text" => "bottone3",
+        ]
+    ];
+    $menu[] = [
+        [
+            "text"          => "bottone3",
             "callback_data" => "/test3"
-        )
-    );
+        ]
+    ];
     sm($chatID, "Tastiera inline.", $menu, 'Markdown', false, false, true);
 }
 

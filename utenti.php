@@ -30,24 +30,24 @@ if (strpos($msg, "/iscritti") === 0 and $userID == $adminID) {
 
 //post globali
 if (strpos($msg, "/post") === 0 and $adminID == $chatID) {
-    $t = array(
-        array(
-            array(
-                "text" => "馃懁 Utenti",
+    $t = [
+        [
+            [
+                "text"          => "馃懁 Utenti",
                 "callback_data" => "/2post 1"
-            ),
-            array(
-                "text" => "Gruppi 馃懃",
+            ],
+            [
+                "text"          => "Gruppi 馃懃",
                 "callback_data" => "/2post 2"
-            )
-        ),
-        array(
-            array(
-                "text" => "馃懁 Utenti e Gruppi 馃懃",
+            ]
+        ],
+        [
+            [
+                "text"          => "馃懁 Utenti e Gruppi 馃懃",
                 "callback_data" => "/2post 3"
-            )
-        )
-    );
+            ]
+        ]
+    ];
     sm($chatID, "Ok $nome, dove vuoi inviare il messaggio globale?
 
 _Se selezioni gruppi, invia anche nei canali conosciuti._", $t, 'Markdown', false, false, true);
@@ -58,14 +58,14 @@ if (strpos($msg, "/2post") === 0 and $adminID == $chatID) {
     $campo = explode(" ", $msg);
     mysql_query("update $tabella set page = 'post $campo[1]' where chat_id = $chatID");
 
-    $t = array(
-        array(
-            array(
-                "text" => "鉂� Annulla",
+    $t = [
+        [
+            [
+                "text"          => "鉂� Annulla",
                 "callback_data" => "/apostannulla"
-            )
-        )
-    );
+            ]
+        ]
+    ];
 
     cb_reply($cbid, "Ok!", false, $cbmid, "Ok $nome, invia ora il post globale che vuoi inviare.
 Formattazione: " . $config['formattazione_messaggi_globali'], $t);
