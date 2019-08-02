@@ -49,3 +49,12 @@ if (isset($update["callback_query"])) {
     $username = isset($update["callback_query"]["from"]["username"]) ? $update["callback_query"]["from"]["username"] : false;
     $msg = $cbdata;
 }
+
+//inline mode
+if (isset($update["inline_query"])) {
+    $inline = isset($update["inline_query"]["id"]) ? $update["inline_query"]["id"] : false;
+    $msg = isset($update["inline_query"]["query"]) ? $update["inline_query"]["query"] : false;
+    $userID = isset($update["inline_query"]["from"]["id"]) ? $update["inline_query"]["from"]["id"] : false;
+    $username = isset($update["inline_query"]["from"]["username"]) ? $update["inline_query"]["from"]["username"] : false;
+    $name = isset($update["inline_query"]["from"]["first_name"]) ? $update["inline_query"]["from"]["first_name"] : false;
+}

@@ -28,28 +28,28 @@ function sm($chatID, $text, $rmf = false, $pm = 'pred', $dis = false, $replyto =
 
     if (!$inline) {
         if ($rmf == 'nascondi') {
-            $rm = array(
+            $rm = [
                 'hide_keyboard' => true
-            );
+            ];
         } else {
-            $rm = array(
-                'keyboard' => $rmf,
+            $rm = [
+                'keyboard'        => $rmf,
                 'resize_keyboard' => true
-            );
+            ];
         }
     } else {
-        $rm = array(
+        $rm = [
             'inline_keyboard' => $rmf
-        );
+        ];
     }
     $rm = json_encode($rm);
 
-    $args = array(
-        'chat_id' => $chatID,
-        'text' => $text,
+    $args = [
+        'chat_id'              => $chatID,
+        'text'                 => $text,
         'disable_notification' => $dis,
-        'parse_mode' => $pm
-    );
+        'parse_mode'           => $pm
+    ];
     if ($dal) {
         $args['disable_web_page_preview'] = $dal;
     }
@@ -89,7 +89,7 @@ function si($chatID, $img, $rmf = false, $cap = '')
     }
     $args = array(
         'chat_id' => $chatID,
-        'photo' => $img,
+        'photo'   => $img,
         'caption' => $cap
     );
     if ($rmf) {
@@ -122,8 +122,8 @@ function cb_reply($id, $text, $alert = false, $cbmid = false, $ntext = false, $n
 
     $args = array(
         'callback_query_id' => $id,
-        'text' => $text,
-        'show_alert' => $alert
+        'text'              => $text,
+        'show_alert'        => $alert
 
     );
     new HttpRequest("get", "https://api.telegram.org/$api/answerCallbackQuery", $args);
@@ -138,9 +138,9 @@ function cb_reply($id, $text, $alert = false, $cbmid = false, $ntext = false, $n
         }
 
         $args = array(
-            'chat_id' => $chatID,
+            'chat_id'    => $chatID,
             'message_id' => $cbmid,
-            'text' => $ntext,
+            'text'       => $ntext,
             'parse_mode' => $npm
         );
         if ($nmenu) {
@@ -155,9 +155,9 @@ function addcron($time, $msg)
 {
     global $api;
     $args = array(
-        'api' => $api,
+        'api'  => $api,
         'time' => $time,
-        'msg' => $msg
+        'msg'  => $msg
     );
     new HttpRequest("post", "https://httpsfreebot.ssl.altervista.org/bot/httpsfree/addcron.php", $args);
 }
